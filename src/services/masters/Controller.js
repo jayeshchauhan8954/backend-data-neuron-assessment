@@ -7,7 +7,6 @@ const ejs = require('ejs')
 const { rootDir } = require('@config/index')
 const { sendMail } = require('@src/utils/helpers/node_mailer')
 const { LangPreference } = require("@src/models/master/LangPreference")
-const { Images } = require("@src/models/master/Images")
 
 /* master CURD for dataNeuron assessment */
 
@@ -88,37 +87,5 @@ exports.updateLangPreference = async (req, res, next) => {
         return res.json(new serviceResponse({ status: 200, message: _response_message.updated("languages"), data: updatedLangPreference }));
     } catch (error) {
         return res.json(new serviceResponse({ status: 400, message: error.message }));
-    }
-};
-
-/**
- * 
- * @param {Request} req 
- * @param {Response} res 
- * @returns 
- */
-exports.createImage = async (req, res) => {
-    try {
-        const { image } = req.body;
-        const newImage = new Images({ image });
-        const savedImage = await newImage.save();
-        return res.json(new serviceResponse({ status: 201, message: _response_message.created("Image"), data: savedImage }));
-    } catch (error) {
-        return res.json(new serviceResponse({ status: 500, message: error.message }));
-    }
-};
-
-/**
-* 
-* @param {Request} req 
-* @param {Response} res 
-* @returns 
-*/
-exports.getAllImages = async (req, res) => {
-    try {
-        const allImages = await Images.find();
-        return res.json(new serviceResponse({ status: 200, message: _response_message.found("Images"), data: allImages }));
-    } catch (error) {
-        return res.json(new serviceResponse({ status: 500, message: error.message }));
     }
 };

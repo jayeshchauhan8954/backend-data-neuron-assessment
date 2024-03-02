@@ -36,15 +36,3 @@ exports.languagePreferenceValidation = (type) => {
             ]
     }
 }
-/**
- * @param {"add"} type
- */
-exports.imagesValidation = (type) => {
-    switch (type) {
-        case "add":
-            return [
-                body("image", "image can't be null").notEmpty().trim(),
-                validateErrors,
-            ]
-    }
-}

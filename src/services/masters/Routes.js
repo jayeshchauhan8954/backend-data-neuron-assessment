@@ -11,8 +11,6 @@ masterRoutes.post("/create-lang-preference", languagePreferenceValidation("add")
 masterRoutes.get("/get-lang-preference/:email", languagePreferenceValidation("get"), getLangPreferenceByEmail);
 masterRoutes.put("/update-lang-preference", languagePreferenceValidation("update"), updateLangPreference);
 
-/* language preference routes*/
-masterRoutes.post("/create-image", imagesValidation("add"), createImage);
-masterRoutes.get("/get-all-images", getAllImages);
+
 
 module.exports = { masterRoutes }
