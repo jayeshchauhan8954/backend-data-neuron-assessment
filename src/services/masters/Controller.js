@@ -46,7 +46,7 @@ exports.createLangPreference = async (req, res, next) => {
         }
         const langPreference = LangPreference({ name, email, languages });
         await langPreference.save()
-        return res.json(new serviceResponse({ status: 200, message: _response_message.created("prefences"), data: langPreference }));
+        return res.json(new serviceResponse({ status: 200, message: _response_message.created("languages preferences"), data: langPreference }));
     } catch (error) {
         return res.json(new serviceResponse({ status: 400, message: error.message }));
     }
@@ -82,7 +82,7 @@ exports.updateLangPreference = async (req, res, next) => {
         const { name, email, languages } = req.body;
         const updatedLangPreference = await LangPreference.findOneAndUpdate({ email }, { name, languages }, { new: true });
         if (!updatedLangPreference) {
-            return res.json(new serviceResponse({ status: 404, message: _response_message.notFound("name") }));
+            return res.json(new serviceResponse({ status: 404, message: _response_message.notFound("record") }));
         }
         return res.json(new serviceResponse({ status: 200, message: _response_message.updated("languages"), data: updatedLangPreference }));
     } catch (error) {
