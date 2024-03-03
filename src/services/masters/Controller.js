@@ -65,7 +65,7 @@ exports.getLangPreferenceByEmail = async (req, res, next) => {
         if (!updatedLangPreference) {
             return res.json(new serviceResponse({ status: 404, message: _response_message.notFound() }));
         }
-        return res.json(new serviceResponse({ status: 200, message: _response_message.updated("Preferred languages"), data: updatedLangPreference }));
+        return res.json(new serviceResponse({ status: 200, message: _response_message.found("Preferred languages"), data: updatedLangPreference }));
     } catch (error) {
         return res.json(new serviceResponse({ status: 400, message: error.message }));
     }
